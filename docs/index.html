@@ -21,7 +21,8 @@
         .header-content {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -30,10 +31,21 @@
             margin-right: 15px;
         }
 
+        .title-block {
+            display: flex;
+            align-items: center;
+        }
+
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
             letter-spacing: 1px;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.9em;
+            line-height: 1.4;
         }
 
         .menu-section {
@@ -63,13 +75,31 @@
         .menu-item:last-child {
             border-bottom: none;
         }
+
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-info {
+                text-align: left;
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <img src="logo.png" alt="ロゴ" class="logo">
-            <h1>Car Refresh Hagi</h1>
+            <div class="title-block">
+                <img src="logo.png" alt="ロゴ" class="logo">
+                <h1>(有)カーリフレッシュ萩</h1>
+            </div>
+            <div class="contact-info">
+                <p>〒758-0063 山口県萩市山田３９１４－１</p>
+                <p>TEL: 0838-26-0938</p>
+            </div>
         </div>
     </header>
 
