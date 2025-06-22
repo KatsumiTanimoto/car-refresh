@@ -16,7 +16,6 @@
             background-color: #111;
             color: white;
             padding: 20px 40px;
-            position: relative;
             text-align: center;
         }
 
@@ -38,13 +37,32 @@
             letter-spacing: 1px;
         }
 
-        .contact-info {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            text-align: right;
-            font-size: 0.9em;
-            line-height: 1.4;
+        .company-description {
+            max-width: 800px;
+            margin: 30px auto 10px auto;
+            text-align: center;
+        }
+
+        .company-description h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00796b;
+        }
+
+        .info-box {
+            border: 2px solid #00796b;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box p {
+            margin: 8px 0;
+            font-size: 1em;
         }
 
         .menu-section {
@@ -76,37 +94,34 @@
         }
 
         @media (max-width: 600px) {
-            header {
-                text-align: left;
-            }
-
             .title-block {
                 flex-direction: column;
-                align-items: flex-start;
             }
 
-            .contact-info {
-                position: static;
-                margin-top: 10px;
-                text-align: left;
+            .info-box {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- 右上の住所・電話 -->
-        <div class="contact-info">
-            <p>〒758-0011 山口県萩市椿東〇〇〇</p>
-            <p>TEL: 0838-XX-XXXX</p>
-        </div>
-
         <!-- 中央のロゴ＋会社名 -->
         <div class="title-block">
             <img src="logo.png" alt="ロゴ" class="logo">
             <h1>(有)カーリフレッシュ萩</h1>
         </div>
     </header>
+
+    <!-- 会社説明セクション -->
+    <section class="company-description">
+        <h2>会社説明</h2>
+        <div class="info-box">
+            <p><strong>営業時間：</strong> 9:00〜18:00（定休日：日曜）</p>
+            <p><strong>住所：</strong> 〒758-0011 山口県萩市椿東〇〇〇</p>
+            <p><strong>TEL：</strong> 0838-XX-XXXX</p>
+        </div>
+    </section>
 
     <section class="menu-section">
         <h2>サービスメニュー</h2>
