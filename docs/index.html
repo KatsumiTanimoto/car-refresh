@@ -1,182 +1,190 @@
 <!DOCTYPE html>
-<html lang="ja"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title>Car Refresh Hagi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Refresh Hagi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
 
-        header {
-            background-color: #111;
-            color: white;
-            padding: 20px 40px;
-            text-align: center;
-        }
+    header {
+      background-color: #d0f0e0;
+      color: #000;
+      padding: 20px 40px;
+    }
 
-        .title-block {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .logo {
-            width: 50px;
-            height: auto;
-            margin-right: 15px;
-        }
+    .logo {
+      width: 60px;
+      height: auto;
+      margin-right: 15px;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.2em;
-            letter-spacing: 1px;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2.7em;
+      letter-spacing: 1px;
+    }
 
-        .company-section {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+    .menu-section,
+    .company-section {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 40px 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .company-description {
-            flex: 1 1 300px;
-            max-width: 450px;
-        }
+    .menu-section h2,
+    .company-info h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00796b;
+      padding-bottom: 10px;
+      text-align: left;
+    }
 
-        .company-description h2 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #00796b;
-        }
+    .menu-images {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
 
-        .info-box {
-            border: 2px solid #00796b;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #ffffff;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    .menu-item {
+      text-align: center;
+    }
 
-        .info-box p {
-            margin: 8px 0;
-            font-size: 1em;
-        }
+    .menu-item img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .map {
-            flex: 1 1 300px;
-            max-width: 500px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    .menu-item p {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
 
-        .map iframe {
-            width: 100%;
-            height: 300px;
-            border: 0;
-        }
+    .company-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
 
-        .menu-section {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    .company-info {
+      flex: 1 1 300px;
+      border: 2px solid #00796b;
+      border-radius: 10px;
+      padding: 20px;
+    }
 
-        .menu-section h2 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #00796b;
-            padding-bottom: 10px;
-        }
+    .company-info p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
 
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #ddd;
-            font-size: 1.1em;
-        }
+    .map {
+      flex: 1 1 300px;
+    }
 
-        .menu-item:last-child {
-            border-bottom: none;
-        }
+    .map iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
 
-        @media (max-width: 768px) {
-            .company-section {
-                flex-direction: column;
-                align-items: center;
-            }
-            .map iframe {
-                height: 250px;
-            }
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+      }
+
+      .menu-images,
+      .company-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .company-info,
+      .map {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="title-block">
-            <img src="logo.png" alt="ロゴ" class="logo">
-            <h1>(有)カーリフレッシュ萩</h1>
-        </div>
-    </header>
 
-    <section class="company-section">
-        <!-- 左：会社情報 -->
-        <div class="company-description">
-            <h2>会社説明</h2>
-            <div class="info-box">
-                <p><strong>営業時間：</strong> 9:00〜18:00（定休日：日曜）</p>
-                <p><strong>住所：</strong> 〒758-0063 山口県萩市山田3914-1</p>
-                <p><strong>TEL：</strong> 0838-26-0938</p>
-                <p><strong>Email：</strong> info@car-refresh-hagi.jp</p>
-            </div>
-        </div>
+  <!-- ヘッダー -->
+  <header>
+    <div class="header-content">
+      <img src="logo.png" alt="ロゴ" class="logo">
+      <h1>(有)カーリフレッシュ萩</h1>
+    </div>
+  </header>
 
-        <!-- 右：Google Map -->
-        <div class="map">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3290.3778594768565!2d131.40508881528048!3d34.41009488050664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b9b671e50a0f%3A0xe30f77454be0a6a!2z44CSNzU4LTAwNjMg5bKh5bGx5biC5rSl5bGx5Yy65bCP5a6Y55S677yS77yT77yV4oiS77yX!5e0!3m2!1sja!2sjp!4v1717899000000"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </section>
+  <!-- 会社説明 + 地図 -->
+  <section class="company-section">
+    <div class="company-info">
+      <h3>会社説明</h3>
+      <p><strong>営業時間：</strong>9:00〜18:00（定休日：水曜日）</p>
+      <p><strong>住所：</strong>〒758-0063　山口県萩市山田3914-1</p>
+      <p><strong>電話番号：</strong>0838-26-0938</p>
+      <p><strong>メール：</strong>info@carrefresh-hagi.jp</p>
+    </div>
+    <div class="map">
+      <iframe 
+        src="https://www.google.com/maps?q=山口県萩市山田3914-1&output=embed" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
 
-    <section class="menu-section">
-        <h2>サービスメニュー</h2>
-        <div class="menu-item">
-            <span>洗車</span><span>3,000円</span>
-        </div>
-        <div class="menu-item">
-            <span>タイヤ交換</span><span>3,000円</span>
-        </div>
-        <div class="menu-item">
-            <span>オイル交換</span><span>10,000円</span>
-        </div>
-        <div class="menu-item">
-            <span>コーティング</span><span>20,000円～</span>
-        </div>
-        <div class="menu-item">
-            <span>板金</span><span>要相談（見積無料）</span>
-        </div>
-        <div class="menu-item">
-            <span>塗装</span><span>50,000円 / 1枚</span>
-        </div>
-    </section>
+  <!-- サービスメニュー -->
+  <section class="menu-section">
+    <h2>サービスメニュー</h2>
+    <div class="menu-images">
+      <div class="menu-item">
+        <img src="リティーニング.png" alt="リティーニング">
+  
+      </div>
+      <div class="menu-item">
+        <img src="板金塗装.png" alt="板金塗装">
+    
+      </div>
+      <div class="menu-item">
+        <img src="その他.png" alt="その他">
+ 
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>© 2025 Car Refresh Hagi</p>
+  </footer>
+
 </body>
 </html>
