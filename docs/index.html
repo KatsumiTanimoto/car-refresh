@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Car Refresh Hagi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -13,8 +13,8 @@
     }
 
     header {
-      background-color: #d0f0e0;
-      color: #000;
+      background-color: #d32f2f; /* 赤色 */
+      color: white;
       padding: 20px 40px;
     }
 
@@ -36,21 +36,82 @@
       letter-spacing: 1px;
     }
 
-    .menu-section,
     .company-section {
-      max-width: 1000px;
-      margin: 50px auto;
-      padding: 40px 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1100px;
+      margin: 60px auto 50px;
+      padding: 40px 40px;
+      background: #f28b8b;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(242, 139, 139, 0.5);
+      display: flex;
+      gap: 40px;
+      flex-wrap: nowrap;
+      color: #fff;
+      align-items: stretch; /* 高さ揃え */
+      min-height: 320px;
     }
 
-    .menu-section h2,
+    .company-info {
+      flex: 1 1 420px;
+      border-radius: 15px;
+      background: #f76e6e;
+      padding: 25px 30px;
+      box-shadow: 0 4px 12px rgba(247, 110, 110, 0.7);
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
+    }
+
     .company-info h3 {
       font-size: 2em;
       margin-bottom: 20px;
-      border-bottom: 2px solid #00796b;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 10px;
+    }
+
+    .company-info p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .map {
+      flex: 1 1 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      height: 340px; /* 会社説明の高さに合わせる */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map iframe {
+      width: 100%;
+      flex-grow: 1;
+      border: none;
+      border-radius: 15px;
+      height: auto;
+    }
+
+    .menu-section {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 40px 30px;
+      background: #f28b8b;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(242, 139, 139, 0.5);
+      color: #fff;
+    }
+
+    .menu-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #fff;
       padding-bottom: 10px;
       text-align: left;
     }
@@ -60,6 +121,7 @@
       justify-content: center;
       gap: 40px;
       flex-wrap: wrap;
+      margin-bottom: 50px;
     }
 
     .menu-item {
@@ -67,46 +129,94 @@
     }
 
     .menu-item img {
-      width: 200px;
+      width: 250px; /* 少し大きめ */
       height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    .menu-item p {
+    .menu-item img:hover {
+      transform: scale(1.05);
+    }
+
+    /* 詳細セクションタイトル */
+    .detail-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      text-align: left;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 8px;
+    }
+
+    /* 詳細セクションのグリッド */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .detail-item {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .detail-item img {
+      width: 70%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .detail-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .detail-item p {
       margin-top: 10px;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
-    .company-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: space-between;
+    /* ポップアップ用スタイル */
+    #popupOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
     }
-
-    .company-info {
-      flex: 1 1 300px;
-      border: 2px solid #00796b;
-      border-radius: 10px;
-      padding: 20px;
+    #popupContent {
+      background: #fff;
+      color: #333;
+      padding: 25px 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      position: relative;
+      text-align: center;
     }
-
-    .company-info p {
-      margin: 10px 0;
-      line-height: 1.6;
+    #popupContent h2 {
+      margin-top: 0;
+      color: #d32f2f;
     }
-
-    .map {
-      flex: 1 1 300px;
+    #popupClose {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 1.5em;
+      color: #999;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s ease;
     }
-
-    .map iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-      border-radius: 10px;
+    #popupClose:hover {
+      color: #d32f2f;
     }
 
     footer {
@@ -116,30 +226,39 @@
       color: #777;
     }
 
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
+    @media (max-width: 900px) {
+      .menu-images {
+        justify-content: flex-start;
       }
 
-      .menu-images,
+      .detail-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* 会社説明 + 地図の横並びを縦並びに */
       .company-section {
         flex-direction: column;
-        align-items: center;
       }
 
       .company-info,
       .map {
-        width: 100%;
+        flex: 1 1 100%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .detail-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-
   <!-- ヘッダー -->
   <header>
     <div class="header-content">
-      <img src="logo.png" alt="ロゴ" class="logo">
+      <img src="logo.png" alt="ロゴ" class="logo" />
       <h1>(有)カーリフレッシュ萩</h1>
     </div>
   </header>
@@ -148,17 +267,17 @@
   <section class="company-section">
     <div class="company-info">
       <h3>会社説明</h3>
-      <p><strong>営業時間：</strong>9:00〜18:00（定休日：水曜日）</p>
+      <p><strong>営業時間：</strong>9:00〜18:00（定休日：日曜日）</p>
       <p><strong>住所：</strong>〒758-0063　山口県萩市山田3914-1</p>
       <p><strong>電話番号：</strong>0838-26-0938</p>
       <p><strong>メール：</strong>info@carrefresh-hagi.jp</p>
     </div>
     <div class="map">
-      <iframe 
-        src="https://www.google.com/maps?q=山口県萩市山田3914-1&output=embed" 
-        allowfullscreen="" 
-        loading="lazy">
-      </iframe>
+      <iframe
+        src="https://www.google.com/maps?q=山口県萩市山田3914-1&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
     </div>
   </section>
 
@@ -167,24 +286,127 @@
     <h2>サービスメニュー</h2>
     <div class="menu-images">
       <div class="menu-item">
-        <img src="リティーニング.png" alt="リティーニング">
-  
+        <a href="#retuning"><img src="リティーニング.png" alt="リティーニング" /></a>
       </div>
       <div class="menu-item">
-        <img src="板金塗装.png" alt="板金塗装">
-    
+        <a href="#bankin"><img src="板金塗装.png" alt="板金塗装" /></a>
       </div>
       <div class="menu-item">
-        <img src="その他.png" alt="その他">
- 
+        <a href="#sonota"><img src="その他.png" alt="その他" /></a>
+      </div>
+    </div>
+
+    <!-- リティーニング詳細 -->
+    <h3 id="retuning" class="detail-title">リティーニング</h3>
+    <div class="detail-grid">
+      <div class="detail-item" data-title="リティーニング1" data-desc="リティーニング1の詳しい説明です。">
+        <img src="リティーニング.png" alt="リティーニング1" />
+        <p>リティーニング1</p>
+      </div>
+      <div class="detail-item" data-title="リティーニング2" data-desc="リティーニング2の詳しい説明です。">
+        <img src="リティーニング.png" alt="リティーニング2" />
+        <p>リティーニング2</p>
+      </div>
+      <div class="detail-item" data-title="リティーニング3" data-desc="リティーニング3の詳しい説明です。">
+        <img src="リティーニング.png" alt="リティーニング3" />
+        <p>リティーニング3</p>
+      </div>
+      <div class="detail-item" data-title="リティーニング4" data-desc="リティーニング4の詳しい説明です。">
+        <img src="リティーニング.png" alt="リティーニング4" />
+        <p>リティーニング4</p>
+      </div>
+    </div>
+
+    <!-- 板金塗装詳細 -->
+    <h3 id="bankin" class="detail-title">板金塗装</h3>
+    <div class="detail-grid">
+      <div class="detail-item" data-title="板金塗装1" data-desc="板金塗装1の詳しい説明です。">
+        <img src="板金塗装.png" alt="板金塗装1" />
+        <p>板金塗装1</p>
+      </div>
+      <div class="detail-item" data-title="板金塗装2" data-desc="板金塗装2の詳しい説明です。">
+        <img src="板金塗装.png" alt="板金塗装2" />
+        <p>板金塗装2</p>
+      </div>
+      <div class="detail-item" data-title="板金塗装3" data-desc="板金塗装3の詳しい説明です。">
+        <img src="板金塗装.png" alt="板金塗装3" />
+        <p>板金塗装3</p>
+      </div>
+      <div class="detail-item" data-title="板金塗装4" data-desc="板金塗装4の詳しい説明です。">
+        <img src="板金塗装.png" alt="板金塗装4" />
+        <p>板金塗装4</p>
+      </div>
+    </div>
+
+    <!-- その他詳細 -->
+    <h3 id="sonota" class="detail-title">その他</h3>
+    <div class="detail-grid">
+      <div class="detail-item" data-title="その他1" data-desc="その他1の詳しい説明です。">
+        <img src="その他.png" alt="その他1" />
+        <p>その他1</p>
+      </div>
+      <div class="detail-item" data-title="その他2" data-desc="その他2の詳しい説明です。">
+        <img src="その他.png" alt="その他2" />
+        <p>その他2</p>
+      </div>
+      <div class="detail-item" data-title="その他3" data-desc="その他3の詳しい説明です。">
+        <img src="その他.png" alt="その他3" />
+        <p>その他3</p>
+      </div>
+      <div class="detail-item" data-title="その他4" data-desc="その他4の詳しい説明です。">
+        <img src="その他.png" alt="その他4" />
+        <p>その他4</p>
       </div>
     </div>
   </section>
 
+  <!-- ポップアップ -->
+  <div id="popupOverlay">
+    <div id="popupContent">
+      <span id="popupClose">&times;</span>
+      <h2 id="popupTitle">タイトル</h2>
+      <p id="popupDesc">説明文がここに入ります。</p>
+    </div>
+  </div>
+
   <!-- フッター -->
   <footer>
-    <p>© 2025 Car Refresh Hagi</p>
+    <p>© 2025/6/25更新 Car Refresh Hagi</p>
   </footer>
 
+  <script>
+    // ポップアップ要素を取得
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupDesc = document.getElementById('popupDesc');
+    const popupClose = document.getElementById('popupClose');
+
+    // 詳細項目を全取得
+    const detailItems = document.querySelectorAll('.detail-item');
+
+    detailItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const title = item.getAttribute('data-title') || '詳細説明';
+        const desc = item.getAttribute('data-desc') || '詳しい説明はありません。';
+
+        popupTitle.textContent = title;
+        popupDesc.textContent = desc;
+
+        popupOverlay.style.display = 'flex';
+      });
+    });
+
+    // 閉じるボタンクリックで非表示
+    popupClose.addEventListener('click', () => {
+      popupOverlay.style.display = 'none';
+    });
+
+    // オーバーレイクリックで閉じる（内容領域以外）
+    popupOverlay.addEventListener('click', e => {
+      if (e.target === popupOverlay) {
+        popupOverlay.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
