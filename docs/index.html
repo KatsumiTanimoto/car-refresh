@@ -13,22 +13,43 @@
     }
 
     header {
-      background-color: white; /* 赤色 */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: white; 
       color: #ff0000;
       padding: 20px 40px;
     }
 
     .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 左右に分ける */
+}
 
-    .logo {
-      width: 60px;
-      height: auto;
-      margin-right: 15px;
-    }
+.header-left {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 60px;
+  height: auto;
+}
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ロゴ間の間隔 */
+  
+  
+}
+
+.sub-logo {
+  width: 60px;
+  height: auto;
+}
 
     header h1 {
       margin: 0;
@@ -258,10 +279,17 @@
 <body>
   <!-- ヘッダー -->
   <header>
-    <div class="header-content">
+   <div class="header-content">
+    <div class="header-left">
       <img src="logo.png" alt="ロゴ" class="logo" />
       <h1>(有)カーリフレッシュ萩</h1>
     </div>
+<div class="header-right">
+  <img src="logo.png" class="sub-logo" />
+  <img src="logo.png" class="sub-logo" />
+  <img src="logo.png" class="sub-logo" />
+</div>
+</div>
   </header>
 
   <!-- 会社説明 + 地図 -->
